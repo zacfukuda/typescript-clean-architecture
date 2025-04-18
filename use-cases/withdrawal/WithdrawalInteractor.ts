@@ -14,6 +14,12 @@ export class WithdrawalInteractor implements WithdrawalInputBoundary {
 
   async handle(withdrawalInputData: WithdrawalInputData): Promise<void> {
     const { accountNumber, amount } = withdrawalInputData;
+    const pin = await this.withdrawalDataAccess.readPin(accountNumber);
+
+    if (withdrawalInputData.pin !== pin.number) {
+      throw new Error('InvalidPINError');
+    }
+
     const lastTransaction = await this.withdrawalDataAccess.readLastTransaction(accountNumber);
 
     if (lastTransaction.balance < amount) {

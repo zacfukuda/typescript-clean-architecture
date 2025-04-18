@@ -2,10 +2,10 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "esnext",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
   },
   "include": [
-    "cli",
+    "cli/**/*",
     "data-access/**/*",
     "use-cases/**/*"
   ],
