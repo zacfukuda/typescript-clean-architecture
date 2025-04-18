@@ -19,9 +19,11 @@ function parseBody(request: IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {
     const body: Buffer[] = [];
 
-    request.on('data', (buffer: Buffer) => body.push(buffer));
-    request.on('error', (error: Error) => reject(error));
-    request.on("end", () => resolve(Buffer.concat(body).toString()));
+    request.on('data', (buffer: Buffer): void => {
+      body.push(buffer);
+    });
+    request.on('error', (error: Error): void => reject(error));
+    request.on("end", (): void => resolve(Buffer.concat(body).toString()));
   });
 }
 
@@ -68,6 +70,7 @@ const server = createServer(async (request, response) => {
     const accountNumber = url.split('/')[3];
     const body = await parseBody(request);
     const data = JSON.parse(body);
+    const pin = data.pin;
     const amount = data.amount;
 
     const withdrawalDataAccess = new WithdrawalFileDataAccess();
@@ -75,7 +78,7 @@ const server = createServer(async (request, response) => {
     const withdrawalInputBoundary = new WithdrawalInteractor(withdrawalDataAccess, withdrawalOutputBoundary);
     const withdrawalWebController = new WithdrawalWebController(withdrawalInputBoundary);
 
-    await withdrawalWebController.post(accountNumber, amount);
+    await withdrawalWebController.post(accountNumber, pin, amount);
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end(JSON.stringify({ balance: withdrawalOutputBoundary.result().balance }));
 

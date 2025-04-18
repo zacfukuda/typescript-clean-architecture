@@ -11,5 +11,5 @@ npm run web
 
 curl http://127.0.0.1:3000/api/accounts/1234567/balance
 curl -H "Content-Type: application/json" -X POST -d '{ "amount": 1000 }' http://127.0.0.1:3000/api/accounts/1234567/deposits
-curl -H "Content-Type: application/json" -X POST -d '{ "amount": 500 }' http://127.0.0.1:3000/api/accounts/1234567/withdrawals
+curl -H "Content-Type: application/json" -X POST -d '{ "pin": "1234", "amount": 500 }' http://127.0.0.1:3000/api/accounts/1234567/withdrawals
 ```

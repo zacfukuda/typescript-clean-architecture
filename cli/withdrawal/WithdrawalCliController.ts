@@ -6,8 +6,8 @@ export class WithdrawalCliController {
     private readonly withdrawalInputBoundary: WithdrawalInputBoundary
   ) {}
 
-  async post(accountNumber: string, amount: number): Promise<void> {
-    const withdrawalInputData: WithdrawalInputData = new WithdrawalInputData(accountNumber, amount);
+  async post(accountNumber: string, pin: string, amount: number): Promise<void> {
+    const withdrawalInputData: WithdrawalInputData = new WithdrawalInputData(accountNumber, pin, amount);
     
     await this.withdrawalInputBoundary.handle(withdrawalInputData);
   }
