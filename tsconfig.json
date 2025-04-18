@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "esnext",
+    "moduleResolution": "bundler"
+  },
+  "include": [
+    "cli",
+    "data-access/**/*",
+    "use-cases/**/*"
+  ],
+  "exclude": ["node_modules", "junk-space"]
+}
