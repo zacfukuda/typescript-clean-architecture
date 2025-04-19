@@ -14,6 +14,9 @@ import { WithdrawalFileDataAccess } from '../data-access/WithdrawalFileDataAcces
 import { WithdrawalWebPresenter } from './withdrawal/WithdrawalWebPresenter';
 import { WithdrawalInteractor } from '../use-cases/withdrawal/WithdrawalInteractor';
 import { WithdrawalWebController } from './withdrawal/WithdrawalWebController';
+import { BalanceTellerWebView } from './balance-teller/BalanceTellerWebView';
+import { DepositWebView } from './deposit/DepositWebView';
+import { WithdrawalWebView } from './withdrawal/WithdrawalWebView';
 
 function parseBody(request: IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -33,62 +36,64 @@ const server = createServer(async (request, response) => {
   console.log((method ?? 'UNDEFINED') + ' ' + (url ?? ''));
 
   if (url === undefined) {
-    response.writeHead(404,  { 'Content-Type': 'application/json' });
+    response.writeHead(404, { 'Content-Type': 'application/json' });
     response.end(JSON.stringify({ message: 'Not found.' }));
 
     return;
-  }
-  if (/\/api\/accounts\/\d{7}\/balance/g.test(url) && method === 'GET') {    
+
+  } else if (/\/api\/accounts\/\d{7}\/balance/g.test(url) && method === 'GET') {    
     const accountNumber = url.split('/')[3];
     const balanceTellerDataAccess = new BalanceTellerFileDataAccess();
     const balanceTellerOutputBoundary = new BalanceTellerWebPresenter();
     const balanceTellerInputBoundary = new BalanceTellerInteractor(balanceTellerDataAccess, balanceTellerOutputBoundary);
     const balanceTellerWebController = new BalanceTellerWebController(balanceTellerInputBoundary);
+    const balanceTellerWebView = new BalanceTellerWebView();
 
     await balanceTellerWebController.get(accountNumber);
     response.writeHead(200,  { 'Content-Type': 'application/json' });
-    response.end(JSON.stringify({ balance: balanceTellerOutputBoundary.result().balance }));
+    response.end(balanceTellerWebView.render(balanceTellerOutputBoundary.result()));
 
     return;
+
   } else if (/\/api\/accounts\/\d{7}\/deposits/g.test(url) && method === 'POST') {
     const accountNumber = url.split('/')[3];
     const body = await parseBody(request);
     const data = JSON.parse(body);
-    const amount = data.amount;
+    const { amount } = data;
 
     const depositDataAccess = new DepositFileDataAccess();
     const depositOutputBoundary = new DepositWebPresenter();
     const depositInputBoundary = new DepositInteractor(depositDataAccess, depositOutputBoundary);
     const depositWebController = new DepositWebController(depositInputBoundary);
+    const depositWebView = new DepositWebView();
 
     await depositWebController.post(accountNumber, amount);
     response.writeHead(200, { 'Content-Type': 'application/json' });
-    response.end(JSON.stringify({ balance: depositOutputBoundary.result().balance }));
+    response.end(depositWebView.render(depositOutputBoundary.result()));
 
     return;
+
   } else if (/\/api\/accounts\/\d{7}\/withdrawals/g.test(url) && method === 'POST') {
     const accountNumber = url.split('/')[3];
     const body = await parseBody(request);
     const data = JSON.parse(body);
-    const pin = data.pin;
-    const amount = data.amount;
+    const { pin, amount } = data;
 
     const withdrawalDataAccess = new WithdrawalFileDataAccess();
     const withdrawalOutputBoundary = new WithdrawalWebPresenter();
     const withdrawalInputBoundary = new WithdrawalInteractor(withdrawalDataAccess, withdrawalOutputBoundary);
     const withdrawalWebController = new WithdrawalWebController(withdrawalInputBoundary);
+    const withdrawalWebView = new WithdrawalWebView();
 
     await withdrawalWebController.post(accountNumber, pin, amount);
     response.writeHead(200, { 'Content-Type': 'application/json' });
-    response.end(JSON.stringify({ balance: withdrawalOutputBoundary.result().balance }));
+    response.end(withdrawalWebView.render(withdrawalOutputBoundary.result()));
 
     return;
   }
 
   response.writeHead(404, { 'Content-Type': 'application/json' });
   response.end(JSON.stringify({ message: 'Not found.' }));
-
-  return;
 });
 const port = 3000;
 const host = '127.0.0.1';
