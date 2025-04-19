@@ -16,6 +16,9 @@ import { WithdrawalFileDataAccess } from '../data-access/WithdrawalFileDataAcces
 import { WithdrawalCliPresenter } from './withdrawal/WithdrawalCliPresenter';
 import { WithdrawalInteractor } from '../use-cases/withdrawal/WithdrawalInteractor';
 import { WithdrawalCliController } from './withdrawal/WithdrawalCliController';
+import { BalanceTellerCliView } from './balance-teller/BalanceTellerCliView';
+import { DepositCliView } from './deposit/DepositCliView';
+import { WithdrawalCliView } from './withdrawal/WithdrawalCliView';
 
 const action = await select({
   message: 'What would you like to do?',
@@ -32,9 +35,10 @@ if (action === 'check_balance') {
   const balanceTellerOutputBoundary = new BalanceTellerCliPresenter();
   const balanceTellerInputBoundary = new BalanceTellerInteractor(balanceTellerDataAccess, balanceTellerOutputBoundary);
   const balanceTellerCliController = new BalanceTellerCliController(balanceTellerInputBoundary);
+  const balanceTellerCliView = new BalanceTellerCliView();
 
   await balanceTellerCliController.get(accountNumber);
-  console.log('Your balance: ' + balanceTellerOutputBoundary.result().balance.toLocaleString() + ' JPY');
+  balanceTellerCliView.render(balanceTellerOutputBoundary.result());
 
 } else if (action === 'deposit') {
   const amount = await input({ message: 'How much would you like to deposit?:' });
@@ -42,9 +46,10 @@ if (action === 'check_balance') {
   const depositOutputBoundary = new DepositCliPresenter();
   const depositInputBoundary = new DepositInteractor(depositDataAccess, depositOutputBoundary);
   const depositCliController = new DepositCliController(depositInputBoundary);
+  const depositCliView = new DepositCliView();
 
   await depositCliController.post(accountNumber, Number(amount));
-  console.log('Your new balance: ' + depositOutputBoundary.result().balance.toLocaleString() + ' JPY');
+  depositCliView.render(depositOutputBoundary.result());
 
 } else if (action === 'withdrawal') {
   const pin = await input({ message: 'What is your PIN?:' });
@@ -53,9 +58,10 @@ if (action === 'check_balance') {
   const withdrawalOutputBoundary = new WithdrawalCliPresenter();
   const withdrawalInputBoundary = new WithdrawalInteractor(withdrawalDataAccess, withdrawalOutputBoundary);
   const withdrawalCliController = new WithdrawalCliController(withdrawalInputBoundary);
+  const withdrawalCliView = new WithdrawalCliView();
 
   await withdrawalCliController.post(accountNumber, pin, Number(amount));
-  console.log('Your new balance: ' + withdrawalOutputBoundary.result().balance.toLocaleString() + ' JPY');
+  withdrawalCliView.render(withdrawalOutputBoundary.result());
 }
 
 exit(0);

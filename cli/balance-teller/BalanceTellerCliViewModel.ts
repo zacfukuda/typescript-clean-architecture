@@ -1,5 +1,3 @@
 export class BalanceTellerCliViewModel {
-  constructor(
-    public readonly balance: number
-  ) {}
+  constructor(public readonly balance: number) {}
 }

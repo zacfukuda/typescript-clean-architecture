@@ -1,4 +1,16 @@
+# TypeScript Clean Architecture
+
+Sample Automated Teller Machine system(ATM) constructed in a Clean Architecture in TypeScript.
+
 ## Getting started
+
+### Generate accounts/database
+
+```bash
+
+```
+
+### Run applications
 
 ```bash
 npm install
