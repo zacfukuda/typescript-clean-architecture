@@ -5,13 +5,15 @@
     "moduleResolution": "bundler",
     "baseUrl": ".",
     "paths": {
-      "use-cases/*": ["./use-cases/*"]
+      "use-cases/*": ["./use-cases/*"],
+      "gateways/*": ["./gateways/*"]
     }
   },
   "include": [
     "cli/**/*",
     "gateways/**/*",
-    "use-cases/**/*"
+    "use-cases/**/*",
+    "web/**/*",
   ],
   "exclude": ["node_modules", "junk-space"]
 }

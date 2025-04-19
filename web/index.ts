@@ -1,14 +1,14 @@
 import { createServer, IncomingMessage } from 'node:http';
 
-import { BalanceTellerFileSystemGateway } from '../gateways/balance-teller-file-system-gateways';
+import { BalanceTellerFileSystemGateway } from 'gateways/balance-teller-file-system-gateways';
 import { BalanceTellerInteractor } from 'use-cases/balance-teller/BalanceTellerInteractor';
 import { BalanceTellerWebPresenter, BalanceTellerWebController, BalanceTellerWebView } from './balance-teller-web-interface-adapters';
 
-import { DepositFileSystemGateway } from '../gateways/deposit-file-system-gateways';
+import { DepositFileSystemGateway } from 'gateways/deposit-file-system-gateways';
 import { DepositInteractor } from 'use-cases/deposit/DepositInteractor';
 import { DepositWebPresenter, DepositWebController, DepositWebView } from './deposit-web-interface-adapters';
 
-import { WithdrawalFileSystemGateway } from '../gateways/withdrawal-file-system-gateways';
+import { WithdrawalFileSystemGateway } from 'gateways/withdrawal-file-system-gateways';
 import { WithdrawalInteractor } from 'use-cases/withdrawal/WithdrawalInteractor';
 import { WithdrawalWebPresenter, WithdrawalWebController, WithdrawalWebView } from './withdrawal-web-interface-adapters';
 

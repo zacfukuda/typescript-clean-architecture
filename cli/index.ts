@@ -2,15 +2,15 @@
 import { exit } from 'node:process';
 import { input, select } from '@inquirer/prompts';
 
-import { BalanceTellerFileSystemGateway } from '../gateways/balance-teller-file-system-gateways';
+import { BalanceTellerFileSystemGateway } from 'gateways/balance-teller-file-system-gateways';
 import { BalanceTellerInteractor } from 'use-cases/balance-teller/BalanceTellerInteractor';
 import { BalanceTellerCliPresenter, BalanceTellerCliController, BalanceTellerCliView } from './balance-teller-cli-interface-adapters';
 
-import { DepositFileSystemGateway } from '../gateways/deposit-file-system-gateways';
+import { DepositFileSystemGateway } from 'gateways/deposit-file-system-gateways';
 import { DepositInteractor } from 'use-cases/deposit/DepositInteractor';
 import { DepositCliPresenter, DepositCliController, DepositCliView } from './deposit-cli-interface-adapters';
 
-import { WithdrawalFileSystemGateway } from '../gateways/withdrawal-file-system-gateways';
+import { WithdrawalFileSystemGateway } from 'gateways/withdrawal-file-system-gateways';
 import { WithdrawalInteractor } from 'use-cases/withdrawal/WithdrawalInteractor';
 import { WithdrawalCliPresenter, WithdrawalCliController, WithdrawalCliView } from './withdrawal-cli-interface-adapters';
 
