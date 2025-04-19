@@ -1,10 +1,20 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { cwd } from "node:process";
-import { Transaction } from "../use-cases/deposit/entities/Transaction";
-import type { DepositDataAccess } from "../use-cases/deposit/DepositDataAccess";
+import { Pin } from "../../use-cases/withdrawal/entities/Pin";
+import { Transaction } from "../../use-cases/withdrawal/entities/Transaction";
+import type { WithdrawalDataAccess } from "../../use-cases/withdrawal/WithdrawalDataAccess";
 
-export class DepositFileDataAccess implements DepositDataAccess {
+export class WithdrawalFileSystemDataAccess implements WithdrawalDataAccess {
+  async readPin(accountNumber: string): Promise<Pin> {
+    const fileName = 'pin.txt';
+    const filePath = path.resolve(cwd(), 'database', 'accounts', accountNumber, fileName);
+    const content = await readFile(filePath, 'utf8');
+    const number = content.trim();
+
+    return new Pin(number);
+  }
+
   async readLastTransaction(accountNumber: string): Promise<Transaction> {
     const fileName = 'transactions.csv';
     const filePath = path.resolve(cwd(), 'database', 'accounts', accountNumber, fileName);

@@ -2,15 +2,15 @@
 import { exit } from 'node:process';
 import { input, select } from '@inquirer/prompts';
 
-import { BalanceTellerFileDataAccess } from '../data-access/BalanceTellerFileDataAccess';
+import { BalanceTellerFileSystemDataAccess } from '../gateways/balance-teller-file-system-gateways';
 import { BalanceTellerInteractor } from '../use-cases/balance-teller/BalanceTellerInteractor';
 import { BalanceTellerCliPresenter, BalanceTellerCliController, BalanceTellerCliView } from './balance-teller-cli-interface-adapters';
 
-import { DepositFileDataAccess } from '../data-access/DepositFileDataAccess';
+import { DepositFileSystemDataAccess } from '../gateways/deposit-file-system-gateways';
 import { DepositInteractor } from '../use-cases/deposit/DepositInteractor';
 import { DepositCliPresenter, DepositCliController, DepositCliView } from './deposit-cli-interface-adapters';
 
-import { WithdrawalFileDataAccess } from '../data-access/WithdrawalFileDataAccess';
+import { WithdrawalFileSystemDataAccess } from '../gateways/withdrawal-file-system-gateways';
 import { WithdrawalInteractor } from '../use-cases/withdrawal/WithdrawalInteractor';
 import { WithdrawalCliPresenter, WithdrawalCliController, WithdrawalCliView } from './withdrawal-cli-interface-adapters';
 
@@ -25,7 +25,7 @@ const action = await select({
 const accountNumber = await input({ message: 'Please enter your account number:' });
 
 if (action === 'check_balance') {
-  const balanceTellerDataAccess = new BalanceTellerFileDataAccess();
+  const balanceTellerDataAccess = new BalanceTellerFileSystemDataAccess();
   const balanceTellerOutputBoundary = new BalanceTellerCliPresenter();
   const balanceTellerInputBoundary = new BalanceTellerInteractor(balanceTellerDataAccess, balanceTellerOutputBoundary);
   const balanceTellerCliController = new BalanceTellerCliController(balanceTellerInputBoundary);
@@ -36,7 +36,7 @@ if (action === 'check_balance') {
 
 } else if (action === 'deposit') {
   const amount = await input({ message: 'How much would you like to deposit?:' });
-  const depositDataAccess = new DepositFileDataAccess();
+  const depositDataAccess = new DepositFileSystemDataAccess();
   const depositOutputBoundary = new DepositCliPresenter();
   const depositInputBoundary = new DepositInteractor(depositDataAccess, depositOutputBoundary);
   const depositCliController = new DepositCliController(depositInputBoundary);
@@ -48,7 +48,7 @@ if (action === 'check_balance') {
 } else if (action === 'withdrawal') {
   const pin = await input({ message: 'What is your PIN?:' });
   const amount = await input({ message: 'How much would you like to withdraw?:' });
-  const withdrawalDataAccess = new WithdrawalFileDataAccess();
+  const withdrawalDataAccess = new WithdrawalFileSystemDataAccess();
   const withdrawalOutputBoundary = new WithdrawalCliPresenter();
   const withdrawalInputBoundary = new WithdrawalInteractor(withdrawalDataAccess, withdrawalOutputBoundary);
   const withdrawalCliController = new WithdrawalCliController(withdrawalInputBoundary);

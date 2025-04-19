@@ -6,7 +6,7 @@
   },
   "include": [
     "cli/**/*",
-    "data-access/**/*",
+    "gateways/**/*",
     "use-cases/**/*"
   ],
   "exclude": ["node_modules", "junk-space"]
