@@ -1,22 +1,16 @@
 import { createServer, IncomingMessage } from 'node:http';
 
-import { BalanceTellerWebPresenter } from './balance-teller/BalanceTellerWebPresenter';
-import { BalanceTellerWebController } from './balance-teller/BalanceTellerWebController';
 import { BalanceTellerFileDataAccess } from '../data-access/BalanceTellerFileDataAccess';
 import { BalanceTellerInteractor } from '../use-cases/balance-teller/BalanceTellerInteractor';
+import { BalanceTellerWebPresenter, BalanceTellerWebController, BalanceTellerWebView } from './balance-teller-web-interface-adapters';
 
 import { DepositFileDataAccess } from '../data-access/DepositFileDataAccess';
-import { DepositWebPresenter } from './deposit/DepositWebPresenter';
 import { DepositInteractor } from '../use-cases/deposit/DepositInteractor';
-import { DepositWebController } from './deposit/DepositWebController';
+import { DepositWebPresenter, DepositWebController, DepositWebView } from './deposit-web-interface-adapters';
 
 import { WithdrawalFileDataAccess } from '../data-access/WithdrawalFileDataAccess';
-import { WithdrawalWebPresenter } from './withdrawal/WithdrawalWebPresenter';
 import { WithdrawalInteractor } from '../use-cases/withdrawal/WithdrawalInteractor';
-import { WithdrawalWebController } from './withdrawal/WithdrawalWebController';
-import { BalanceTellerWebView } from './balance-teller/BalanceTellerWebView';
-import { DepositWebView } from './deposit/DepositWebView';
-import { WithdrawalWebView } from './withdrawal/WithdrawalWebView';
+import { WithdrawalWebPresenter, WithdrawalWebController, WithdrawalWebView } from './withdrawal-web-interface-adapters';
 
 function parseBody(request: IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {

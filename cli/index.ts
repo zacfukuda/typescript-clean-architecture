@@ -3,22 +3,16 @@ import { exit } from 'node:process';
 import { input, select } from '@inquirer/prompts';
 
 import { BalanceTellerFileDataAccess } from '../data-access/BalanceTellerFileDataAccess';
-import { BalanceTellerCliPresenter } from './balance-teller/BalanceTellerCliPresenter';
 import { BalanceTellerInteractor } from '../use-cases/balance-teller/BalanceTellerInteractor';
-import { BalanceTellerCliController } from './balance-teller/BalanceTellerCliController';
+import { BalanceTellerCliPresenter, BalanceTellerCliController, BalanceTellerCliView } from './balance-teller-cli-interface-adapters';
 
 import { DepositFileDataAccess } from '../data-access/DepositFileDataAccess';
-import { DepositCliPresenter } from './deposit/DepositCliPresenter';
 import { DepositInteractor } from '../use-cases/deposit/DepositInteractor';
-import { DepositCliController } from './deposit/DepositCliController';
+import { DepositCliPresenter, DepositCliController, DepositCliView } from './deposit-cli-interface-adapters';
 
 import { WithdrawalFileDataAccess } from '../data-access/WithdrawalFileDataAccess';
-import { WithdrawalCliPresenter } from './withdrawal/WithdrawalCliPresenter';
 import { WithdrawalInteractor } from '../use-cases/withdrawal/WithdrawalInteractor';
-import { WithdrawalCliController } from './withdrawal/WithdrawalCliController';
-import { BalanceTellerCliView } from './balance-teller/BalanceTellerCliView';
-import { DepositCliView } from './deposit/DepositCliView';
-import { WithdrawalCliView } from './withdrawal/WithdrawalCliView';
+import { WithdrawalCliPresenter, WithdrawalCliController, WithdrawalCliView } from './withdrawal-cli-interface-adapters';
 
 const action = await select({
   message: 'What would you like to do?',
