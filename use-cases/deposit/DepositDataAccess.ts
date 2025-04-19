@@ -1,4 +1,4 @@
-import { Transaction } from "./entities/Transaction";
+import { Transaction } from "./entities";
 
 export interface DepositDataAccess {
   readLastTransaction(accountNumber: string): Promise<Transaction>;

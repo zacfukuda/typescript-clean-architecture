@@ -1,5 +1,4 @@
-import { Pin } from "./entities/Pin";
-import { Transaction } from "./entities/Transaction";
+import { Pin, Transaction } from "./entities";
 
 export interface WithdrawalDataAccess {
   readPin(accountNumber: string): Promise<Pin>;
