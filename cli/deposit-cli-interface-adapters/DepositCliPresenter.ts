@@ -1,5 +1,5 @@
-import type { DepositOutputData } from "../../use-cases/deposit/DepositOutputData";
-import type { DepositOutputBoundary } from "../../use-cases/deposit/DepositOutputBoundary";
+import type { DepositOutputData } from "use-cases/deposit/DepositOutputData";
+import type { DepositOutputBoundary } from "use-cases/deposit/DepositOutputBoundary";
 import { DepositCliViewModel } from "./DepositCliViewModel";
 
 export class DepositCliPresenter implements DepositOutputBoundary {

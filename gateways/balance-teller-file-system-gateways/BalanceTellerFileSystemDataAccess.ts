@@ -1,8 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { cwd } from "node:process";
-import { Transaction } from "../../use-cases/deposit/entities/Transaction";
-import type { BalanceTellerDataAccess } from "../../use-cases/balance-teller/BalanceTellerDataAccess";
+import { Transaction } from "use-cases/deposit/entities/Transaction";
+import type { BalanceTellerDataAccess } from "use-cases/balance-teller/BalanceTellerDataAccess";
 
 export class BalanceTellerFileSystemDataAccess implements BalanceTellerDataAccess {
   async readLastTransaction(accountNumber: string): Promise<Transaction> {

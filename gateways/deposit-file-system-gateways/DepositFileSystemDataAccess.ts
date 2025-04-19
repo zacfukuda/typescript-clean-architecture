@@ -1,8 +1,8 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { cwd } from "node:process";
-import { Transaction } from "../../use-cases/deposit/entities/Transaction";
-import type { DepositDataAccess } from "../../use-cases/deposit/DepositDataAccess";
+import { Transaction } from "use-cases/deposit/entities/Transaction";
+import type { DepositDataAccess } from "use-cases/deposit/DepositDataAccess";
 
 export class DepositFileSystemDataAccess implements DepositDataAccess {
   async readLastTransaction(accountNumber: string): Promise<Transaction> {

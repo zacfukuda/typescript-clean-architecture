@@ -1,5 +1,5 @@
-import type { DepositOutputData } from "../../use-cases/deposit/DepositOutputData";
-import type { DepositOutputBoundary } from "../../use-cases/deposit/DepositOutputBoundary";
+import type { DepositOutputData } from "use-cases/deposit/DepositOutputData";
+import type { DepositOutputBoundary } from "use-cases/deposit/DepositOutputBoundary";
 import { DepositWebViewModel } from "./DepositWebViewModel";
 
 export class DepositWebPresenter implements DepositOutputBoundary {

@@ -1,5 +1,5 @@
-import { DepositInputData } from "../../use-cases/deposit/DepositInputData"
-import type { DepositInputBoundary } from "../../use-cases/deposit/DepositInputBoundary";
+import { DepositInputData } from "use-cases/deposit/DepositInputData"
+import type { DepositInputBoundary } from "use-cases/deposit/DepositInputBoundary";
 
 export class DepositCliController {
   constructor (

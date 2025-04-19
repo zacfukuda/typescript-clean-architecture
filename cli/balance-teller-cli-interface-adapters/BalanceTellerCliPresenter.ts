@@ -1,5 +1,5 @@
-import type { BalanceTellerOutputData } from "../../use-cases/balance-teller/BalanceTellerOutputData";
-import type { BalanceTellerOutputBoundary } from "../../use-cases/balance-teller/BalanceTellerOutputBoundary";
+import type { BalanceTellerOutputData } from "use-cases/balance-teller/BalanceTellerOutputData";
+import type { BalanceTellerOutputBoundary } from "use-cases/balance-teller/BalanceTellerOutputBoundary";
 import { BalanceTellerCliViewModel } from "./BalanceTellerCliViewModel";
 
 export class BalanceTellerCliPresenter implements BalanceTellerOutputBoundary {

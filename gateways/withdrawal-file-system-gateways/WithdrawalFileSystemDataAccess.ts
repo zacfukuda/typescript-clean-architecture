@@ -1,9 +1,9 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { cwd } from "node:process";
-import { Pin } from "../../use-cases/withdrawal/entities/Pin";
-import { Transaction } from "../../use-cases/withdrawal/entities/Transaction";
-import type { WithdrawalDataAccess } from "../../use-cases/withdrawal/WithdrawalDataAccess";
+import { Pin } from "use-cases/withdrawal/entities/Pin";
+import { Transaction } from "use-cases/withdrawal/entities/Transaction";
+import type { WithdrawalDataAccess } from "use-cases/withdrawal/WithdrawalDataAccess";
 
 export class WithdrawalFileSystemDataAccess implements WithdrawalDataAccess {
   async readPin(accountNumber: string): Promise<Pin> {

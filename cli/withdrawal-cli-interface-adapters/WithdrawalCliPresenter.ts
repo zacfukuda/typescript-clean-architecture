@@ -1,5 +1,5 @@
-import type { WithdrawalOutputData } from "../../use-cases/withdrawal/WithdrawalOutputData";
-import type { WithdrawalOutputBoundary } from "../../use-cases/withdrawal/WithdrawalOutputBoundary";
+import type { WithdrawalOutputData } from "use-cases/withdrawal/WithdrawalOutputData";
+import type { WithdrawalOutputBoundary } from "use-cases/withdrawal/WithdrawalOutputBoundary";
 import { WithdrawalCliViewModel } from "./WithdrawalCliViewModel";
 
 export class WithdrawalCliPresenter implements WithdrawalOutputBoundary {

@@ -1,5 +1,5 @@
-import type { BalanceTellerInputData } from "../../use-cases/balance-teller/BalanceTellerInputData"
-import type { BalanceTellerInputBoundary } from "../../use-cases/balance-teller/BalanceTellerInputBoundary";
+import type { BalanceTellerInputData } from "use-cases/balance-teller/BalanceTellerInputData"
+import type { BalanceTellerInputBoundary } from "use-cases/balance-teller/BalanceTellerInputBoundary";
 
 export class BalanceTellerCliController {
   constructor (

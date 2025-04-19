@@ -1,15 +1,15 @@
 import { createServer, IncomingMessage } from 'node:http';
 
 import { BalanceTellerFileSystemDataAccess } from '../gateways/balance-teller-file-system-gateways';
-import { BalanceTellerInteractor } from '../use-cases/balance-teller/BalanceTellerInteractor';
+import { BalanceTellerInteractor } from 'use-cases/balance-teller/BalanceTellerInteractor';
 import { BalanceTellerWebPresenter, BalanceTellerWebController, BalanceTellerWebView } from './balance-teller-web-interface-adapters';
 
 import { DepositFileSystemDataAccess } from '../gateways/deposit-file-system-gateways';
-import { DepositInteractor } from '../use-cases/deposit/DepositInteractor';
+import { DepositInteractor } from 'use-cases/deposit/DepositInteractor';
 import { DepositWebPresenter, DepositWebController, DepositWebView } from './deposit-web-interface-adapters';
 
 import { WithdrawalFileSystemDataAccess } from '../gateways/withdrawal-file-system-gateways';
-import { WithdrawalInteractor } from '../use-cases/withdrawal/WithdrawalInteractor';
+import { WithdrawalInteractor } from 'use-cases/withdrawal/WithdrawalInteractor';
 import { WithdrawalWebPresenter, WithdrawalWebController, WithdrawalWebView } from './withdrawal-web-interface-adapters';
 
 function parseBody(request: IncomingMessage): Promise<string> {

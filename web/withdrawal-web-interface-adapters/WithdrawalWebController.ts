@@ -1,5 +1,5 @@
-import { WithdrawalInputData } from "../../use-cases/withdrawal/WithdrawalInputData"
-import type { WithdrawalInputBoundary } from "../../use-cases/withdrawal/WithdrawalInputBoundary";
+import { WithdrawalInputData } from "use-cases/withdrawal/WithdrawalInputData"
+import type { WithdrawalInputBoundary } from "use-cases/withdrawal/WithdrawalInputBoundary";
 
 export class WithdrawalWebController {
   constructor (

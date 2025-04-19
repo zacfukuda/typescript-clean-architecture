@@ -3,6 +3,10 @@
     "target": "ESNext",
     "module": "esnext",
     "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@use-cases/*": ["./use-cases"]
+    }
   },
   "include": [
     "cli/**/*",
