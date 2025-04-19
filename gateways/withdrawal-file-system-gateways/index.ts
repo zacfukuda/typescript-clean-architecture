@@ -1,1 +1,1 @@
-export { WithdrawalFileSystemDataAccess } from './WithdrawalFileSystemDataAccess';
+export { WithdrawalFileSystemGateway } from './WithdrawalFileSystemGateway';

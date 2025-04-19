@@ -4,7 +4,7 @@ import { cwd } from "node:process";
 import { Transaction } from "use-cases/deposit/entities/Transaction";
 import type { BalanceTellerDataAccess } from "use-cases/balance-teller/BalanceTellerDataAccess";
 
-export class BalanceTellerFileSystemDataAccess implements BalanceTellerDataAccess {
+export class BalanceTellerFileSystemGateway implements BalanceTellerDataAccess {
   async readLastTransaction(accountNumber: string): Promise<Transaction> {
       const fileName = 'transactions.csv';
       const filePath = path.resolve(cwd(), 'database', 'accounts', accountNumber, fileName);

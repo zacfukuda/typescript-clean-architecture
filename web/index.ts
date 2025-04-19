@@ -1,14 +1,14 @@
 import { createServer, IncomingMessage } from 'node:http';
 
-import { BalanceTellerFileSystemDataAccess } from '../gateways/balance-teller-file-system-gateways';
+import { BalanceTellerFileSystemGateway } from '../gateways/balance-teller-file-system-gateways';
 import { BalanceTellerInteractor } from 'use-cases/balance-teller/BalanceTellerInteractor';
 import { BalanceTellerWebPresenter, BalanceTellerWebController, BalanceTellerWebView } from './balance-teller-web-interface-adapters';
 
-import { DepositFileSystemDataAccess } from '../gateways/deposit-file-system-gateways';
+import { DepositFileSystemGateway } from '../gateways/deposit-file-system-gateways';
 import { DepositInteractor } from 'use-cases/deposit/DepositInteractor';
 import { DepositWebPresenter, DepositWebController, DepositWebView } from './deposit-web-interface-adapters';
 
-import { WithdrawalFileSystemDataAccess } from '../gateways/withdrawal-file-system-gateways';
+import { WithdrawalFileSystemGateway } from '../gateways/withdrawal-file-system-gateways';
 import { WithdrawalInteractor } from 'use-cases/withdrawal/WithdrawalInteractor';
 import { WithdrawalWebPresenter, WithdrawalWebController, WithdrawalWebView } from './withdrawal-web-interface-adapters';
 
@@ -37,7 +37,7 @@ const server = createServer(async (request, response) => {
 
   } else if (/\/api\/accounts\/\d{7}\/balance/g.test(url) && method === 'GET') {    
     const accountNumber = url.split('/')[3];
-    const balanceTellerDataAccess = new BalanceTellerFileSystemDataAccess();
+    const balanceTellerDataAccess = new BalanceTellerFileSystemGateway();
     const balanceTellerOutputBoundary = new BalanceTellerWebPresenter();
     const balanceTellerInputBoundary = new BalanceTellerInteractor(balanceTellerDataAccess, balanceTellerOutputBoundary);
     const balanceTellerWebController = new BalanceTellerWebController(balanceTellerInputBoundary);
@@ -55,7 +55,7 @@ const server = createServer(async (request, response) => {
     const data = JSON.parse(body);
     const { amount } = data;
 
-    const depositDataAccess = new DepositFileSystemDataAccess();
+    const depositDataAccess = new DepositFileSystemGateway();
     const depositOutputBoundary = new DepositWebPresenter();
     const depositInputBoundary = new DepositInteractor(depositDataAccess, depositOutputBoundary);
     const depositWebController = new DepositWebController(depositInputBoundary);
@@ -73,7 +73,7 @@ const server = createServer(async (request, response) => {
     const data = JSON.parse(body);
     const { pin, amount } = data;
 
-    const withdrawalDataAccess = new WithdrawalFileSystemDataAccess();
+    const withdrawalDataAccess = new WithdrawalFileSystemGateway();
     const withdrawalOutputBoundary = new WithdrawalWebPresenter();
     const withdrawalInputBoundary = new WithdrawalInteractor(withdrawalDataAccess, withdrawalOutputBoundary);
     const withdrawalWebController = new WithdrawalWebController(withdrawalInputBoundary);

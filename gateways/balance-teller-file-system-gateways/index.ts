@@ -1,1 +1,1 @@
-export { BalanceTellerFileSystemDataAccess } from './BalanceTellerFileSystemDataAccess';
+export { BalanceTellerFileSystemGateway } from './BalanceTellerFileSystemGateway';

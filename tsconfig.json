@@ -5,7 +5,7 @@
     "moduleResolution": "bundler",
     "baseUrl": ".",
     "paths": {
-      "@use-cases/*": ["./use-cases"]
+      "use-cases/*": ["./use-cases/*"]
     }
   },
   "include": [

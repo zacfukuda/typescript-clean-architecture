@@ -1,1 +1,1 @@
-export { DepositFileSystemDataAccess } from './DepositFileSystemDataAccess';
+export { DepositFileSystemGateway } from './DepositFileSystemGateway';
