@@ -15,78 +15,31 @@ To illustrate the goal of Clean Architecture, this project contains two applicat
 ## Architecture
 
 - Applications
-  - CLI
-    - Balance Teller CLI Interface Adapters
-      - Balance Teller CLI Controller
-      - Balance Teller CLI Presenter
-      - Balance Teller CLI View
-      - Balance Teller CLI View Model
-    - Deposit CLI Interface Adapters
-      - Deposit CLI Controller
-      - Deposit CLI Presenter
-      - Deposit CLI View
-      - Deposit CLI View Model
-    - Withdrawal CLI Interface Adapters
-      - Withdrawal CLI Controller
-      - Withdrawal CLI Presenter
-      - Withdrawal CLI View
-      - Withdrawal CLI View Model
-  - Web
-    - Balance Teller Web Interface Adapters
-      - Balance Teller Web Controller
-      - Balance Teller Web Presenter
-      - Balance Teller Web View
-      - Balance Teller Web View Model
-    - Deposit Web Interface Adapters
-      - Deposit Web Controller
-      - Deposit Web Presenter
-      - Deposit Web View
-      - Deposit Web View Model
-    - Withdrawal Web Interface Adapters
-      - Withdrawal Web Controller
-      - Withdrawal Web Presenter
-      - Withdrawal Web View
-      - Withdrawal Web View Model
+  - Application
+    - Application Interface Adapter
+      - Controller
+      - Presenter
+      - View
+      - View Model
 - Data Access
-  - Balance Teller File Data Access
-  - Deposit File Data Access
-  - Withdraw File Data Access
+  - Use Case Data Access
 - Database(File system)
+  - Accounts
 - Use Cases
-  - Balance Teller
-    - Balance Teller Data Access
-    - Balance Teller Input Boundary
-    - Balance Teller Input Data
-    - Balance Teller Interactor
-    - Balance Teller Output Boundary
-    - Balance Teller Output Data
+  - Use Case
+    - Data Access
+    - Input Boundary
+    - Input Data
+    - Interactor
+    - Output Boundary
+    - Output Data
     - Entities
-      - Transaction
-  - Deposit
-    - Deposit Data Access
-    - Deposit Input Boundary
-    - Deposit Input Data
-    - Deposit Interactor
-    - Deposit Output Boundary
-    - Deposit Output Data
-    - Entities
-      - Transaction
-  - Withdrawal
-    - Withdrawal Data Access
-    - Withdrawal Input Boundary
-    - Withdrawal Input Data
-    - Withdrawal Interactor
-    - Withdrawal Output Boundary
-    - Withdrawal Output Data
-    - Entities
-      - PIN
-      - Transaction
 
 ## Getting started
 
 ### Generate account database
 
-```bash
+```sh
 mkdir -p database/accounts/1234567
 echo '1234' > database/accounts/1234567/pin.txt
 echo '2025-04-01,10000.00,,10000.00' > database/accounts/1234567/transactions.csv
